@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import accountAddIcon from "@iconify/icons-line-md/account-add";
-import downloadingLoop from "@iconify/icons-line-md/downloading-loop";
+import { lineMdDownloadingLoop, lineMdAccountAdd } from "@/lib/icons";
+
 import Image from "next/image";
 
 export default function Home() {
@@ -8,8 +8,8 @@ export default function Home() {
         <div className="flex flex-col flex-1 items-center justify-center font-sans">
             <button>Click Me!</button>
             <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-background/50 dark:bg-black sm:items-start">
-                <Icon icon={downloadingLoop} />
-                <Icon icon={accountAddIcon} />
+                <Icon icon={lineMdDownloadingLoop} />
+                <Icon icon={lineMdAccountAdd} />
 
                 <Image
                     className="dark:invert"

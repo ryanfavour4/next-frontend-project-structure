@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const ICONIFY_DIR = path.resolve("node_modules/@iconify");
-const OUTPUT_FILE = path.resolve("src/lib/icons.ts");
+const OUTPUT_FILE = path.resolve("src/lib/icons/index.ts");
 
 // Convert kebab-case to camelCase
 // Example: "account-add" → "accountAdd"
@@ -12,8 +12,18 @@ const OUTPUT_FILE = path.resolve("src/lib/icons.ts");
  */
 function toCamelCase(str) {
     return str
-        .replace(/-([a-z])/g, (_, c) => c.toUpperCase())
-        .replace(/^[a-z]/, (c) => c.toLowerCase());
+        .split("-")
+        .map((part, index) => {
+            if (index === 0) return part.toLowerCase();
+
+            // If starts with number, keep as is but uppercase first letter after number
+            if (/^\d/.test(part)) {
+                return part.charAt(0) + part.slice(1);
+            }
+
+            return part.charAt(0).toUpperCase() + part.slice(1);
+        })
+        .join("");
 }
 
 // Format folder name to prefix (remove "icons-" and convert to camelCase)
@@ -61,9 +71,15 @@ function generate() {
         });
     });
 
+    // Ensure directory exists
+    fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
+
+    // Write file
     fs.writeFileSync(OUTPUT_FILE, exports.join("\n"));
 
-    console.log(`✅ Icons generated: ${exports.length}`);
+    console.log(
+        `✅Success! Generated: ${exports.length} Icons into ${OUTPUT_FILE}`,
+    );
 }
 
 generate();

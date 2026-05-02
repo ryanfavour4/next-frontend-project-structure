@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:icons": "node scripts/generate-icons.js",
-    "watch:icons": "chokidar \"src/**/*.{ts,tsx}\" -c \"pnpm generate:icons\""
+    "generate:icons": "node scripts/generate-icons.js"
   },
   "dependencies": {
     "@iconify/icons-bi": "^1.2.19",
@@ -26,9 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
-    "glob": "^13.0.6",
     "tailwindcss": "^4",
-    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
