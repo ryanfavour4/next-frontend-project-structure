@@ -3,16 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "pnpm generate:icons && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:icons": "node scripts/generate-icons.js"
+    "generate:icons": "node scripts/generate-icons.js",
+    "postinstall": "pnpm generate:icons"
   },
   "dependencies": {
-    "@iconify/icons-bi": "^1.2.19",
     "@iconify/icons-line-md": "^1.2.30",
-    "@iconify/icons-ri": "^1.2.10",
     "@iconify/react": "^6.0.2",
     "next": "16.2.4",
     "react": "19.2.4",

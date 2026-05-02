@@ -8,15 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@iconify/icons-bi':
-        specifier: ^1.2.19
-        version: 1.2.19
       '@iconify/icons-line-md':
         specifier: ^1.2.30
         version: 1.2.30
-      '@iconify/icons-ri':
-        specifier: ^1.2.10
-        version: 1.2.10
       '@iconify/react':
         specifier: ^6.0.2
         version: 6.0.2(react@19.2.4)
@@ -195,14 +189,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/icons-bi@1.2.19':
-    resolution: {integrity: sha512-P3enKEBR83a4fcK6vOsSueYpldYS3OdtSSto58bYU0sWThlxl+YXcmXY6Pu0ORKuMHK/hQagpwXPb+hT4vaO2g==}
-
   '@iconify/icons-line-md@1.2.30':
     resolution: {integrity: sha512-gFZmHkWSkSGDZEauw7D1m4HEIGXFHRv9H3tiZYwXKD43j1QmtF4D/A2e4UYJ+rfcS1BZ1lmdzLQUzmH3vCIsPQ==}
-
-  '@iconify/icons-ri@1.2.10':
-    resolution: {integrity: sha512-w/Xu177artcK7P1LPUMq85WcRbqFE8sKYQEuNfEkuex/47DOaCgW6oBFdjlFBAmBczKlsJPdcy2pAGBGZvXdYw==}
 
   '@iconify/react@6.0.2':
     resolution: {integrity: sha512-SMmC2sactfpJD427WJEDN6PMyznTFMhByK9yLW0gOTtnjzzbsi/Ke/XqsumsavFPwNiXs8jSiYeZTmLCLwO+Fg==}
@@ -2129,15 +2117,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@iconify/icons-bi@1.2.19':
-    dependencies:
-      '@iconify/types': 2.0.0
-
   '@iconify/icons-line-md@1.2.30':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify/icons-ri@1.2.10':
     dependencies:
       '@iconify/types': 2.0.0
 

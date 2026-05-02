@@ -1,22 +1,20 @@
 import fs from "fs";
 import path from "path";
 
-const ICONIFY_DIR = path.resolve("node_modules/@iconify");
+const BASE_DIRS = [
+    path.resolve("node_modules/@iconify"),
+    path.resolve("node_modules/@iconify-icons"),
+];
+
 const OUTPUT_FILE = path.resolve("src/lib/icons/index.ts");
 
-// Convert kebab-case to camelCase
-// Example: "account-add" → "accountAdd"
-/** @typedef {object} json
- * @param {string} str
- * @returns {string}
- */
+// Convert kebab-case → camelCase
 function toCamelCase(str) {
     return str
         .split("-")
         .map((part, index) => {
             if (index === 0) return part.toLowerCase();
 
-            // If starts with number, keep as is but uppercase first letter after number
             if (/^\d/.test(part)) {
                 return part.charAt(0) + part.slice(1);
             }
@@ -26,14 +24,8 @@ function toCamelCase(str) {
         .join("");
 }
 
-// Format folder name to prefix (remove "icons-" and convert to camelCase)
-// Example: "icons-line-md" → "lineMd"
-/** @typedef {object} json
- * @param {string} folderName
- * @returns {string}
- */
+// Format prefix (icons-line-md → lineMd)
 function formatPrefix(folderName) {
-    // icons-line-md → lineMd
     return folderName
         .replace("icons-", "")
         .split("-")
@@ -44,41 +36,88 @@ function formatPrefix(folderName) {
 }
 
 function generate() {
-    const folders = fs.readdirSync(ICONIFY_DIR);
+    const imports = [];
+    const exportNames = [];
+    const mapEntries = [];
 
-    const exports = [];
+    BASE_DIRS.forEach((BASE_DIR) => {
+        if (!fs.existsSync(BASE_DIR)) return;
 
-    folders.forEach((folder) => {
-        if (!folder.startsWith("icons-")) return;
+        const folders = fs.readdirSync(BASE_DIR);
 
-        const folderPath = path.join(ICONIFY_DIR, folder);
-        const files = fs.readdirSync(folderPath);
+        folders.forEach((folder) => {
+            let folderPath;
+            let importBase;
+            let prefix;
 
-        const prefix = formatPrefix(folder);
+            // @iconify/icons-*
+            if (BASE_DIR.includes("@iconify")) {
+                if (!folder.startsWith("icons-")) return;
 
-        files.forEach((file) => {
-            if (!file.endsWith(".js")) return;
-            if (file.includes(".d.ts")) return;
+                folderPath = path.join(BASE_DIR, folder);
+                importBase = `@iconify/${folder}`;
+                prefix = formatPrefix(folder);
+            }
 
-            const iconName = file.replace(".js", "");
-            const camelName = toCamelCase(iconName);
+            // @iconify-icons/*
+            else if (BASE_DIR.includes("@iconify-icons")) {
+                folderPath = path.join(BASE_DIR, folder);
+                importBase = `@iconify-icons/${folder}`;
+                prefix = formatPrefix(folder);
+            }
 
-            const exportName = `${prefix}${camelName.charAt(0).toUpperCase()}${camelName.slice(1)}`;
+            const files = fs.readdirSync(folderPath);
 
-            exports.push(
-                `export { default as ${exportName} } from "@iconify/${folder}/${iconName}";`,
-            );
+            files.forEach((file) => {
+                if (!file.endsWith(".js")) return;
+                if (file.includes(".d.ts")) return;
+
+                const iconName = file.replace(".js", "");
+                const camelName = toCamelCase(iconName);
+
+                let safeName = camelName;
+                if (/^\d/.test(safeName)) safeName = "_" + safeName;
+
+                const exportName =
+                    prefix +
+                    safeName.charAt(0).toUpperCase() +
+                    safeName.slice(1);
+
+                imports.push(
+                    `import ${exportName} from "${importBase}/${iconName}";`,
+                );
+
+                exportNames.push(`  ${exportName}`);
+
+                const rawPrefix = folder.replace("icons-", "");
+                const key = `${rawPrefix}:${iconName}`;
+
+                mapEntries.push(`  "${key}": ${exportName}`);
+            });
         });
     });
 
-    // Ensure directory exists
+    // Ensure folder exists
     fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 
-    // Write file
-    fs.writeFileSync(OUTPUT_FILE, exports.join("\n"));
+    const fileContent = `
+/* AUTO-GENERATED FILE — DO NOT EDIT */
+
+${imports.join("\n")}
+
+export {
+${exportNames.join(",\n")}
+};
+
+export const ICON_MAP = {
+${mapEntries.join(",\n")}
+};
+`;
+
+    fs.writeFileSync(OUTPUT_FILE, fileContent.trim() + "\n");
 
     console.log(
-        `✅Success! Generated: ${exports.length} Icons into ${OUTPUT_FILE}`,
+        `✅ Success! Generated ${exportNames.length} icons into ${OUTPUT_FILE}`,
     );
 }
 
