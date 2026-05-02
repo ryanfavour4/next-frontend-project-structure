@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+    --primary: #8c0072;
+    --secondary: #848e00;
+    --background: #120011;
+    --text: #e0e0e0;
+}
+
+@theme inline {
+    --color-purple: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-background: var(--background);
+    --color-text: var(--text);
+}
+
+@layer base {
+    * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+}
+
