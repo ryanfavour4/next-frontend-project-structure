@@ -8,6 +8,7 @@ export default function Home() {
             <button>Click Me!</button>
             <Icon icon={lineMdDownloadingLoop} />
             <Icon icon={"line-md:align-left"} />
+            <Icon icon={"line-md:at"} />
             <Link href={"/login"}>Go To Login</Link>
         </div>
     );
