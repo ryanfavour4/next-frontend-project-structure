@@ -1,19 +1,23 @@
 "use client";
 
-import { IconifyIcon, Icon as IconifyReactIcon } from "@iconify/react";
+import {
+    IconifyIcon,
+    IconProps,
+    Icon as IconifyReactIcon,
+} from "@iconify/react";
 import { ICON_MAP } from "@/lib/icons";
 
 type IconType = string | IconifyIcon;
 
-type Props = {
+export interface Props extends IconProps {
     icon: IconType;
     className?: string;
-};
+}
 
-export default function Icon({ icon, className }: Props) {
+export default function Icon({ icon, className, ...rest }: Props) {
     // ✅ Direct object usage
     if (typeof icon !== "string") {
-        return <IconifyReactIcon icon={icon} className={className} />;
+        return <IconifyReactIcon icon={icon} className={className} {...rest} />;
     }
 
     const [prefix] = icon.split(":");
@@ -47,10 +51,11 @@ pnpm generate:icons
             <IconifyReactIcon
                 icon={icon} // string → API fallback
                 className={className}
+                {...rest}
             />
         );
     }
 
     // ✅ Local icon
-    return <IconifyReactIcon icon={resolved} className={className} />;
+    return <IconifyReactIcon icon={resolved} className={className} {...rest} />;
 }
