@@ -11,6 +11,12 @@ importers:
       '@iconify/icons-line-md':
         specifier: ^1.2.30
         version: 1.2.30
+      '@iconify/icons-lucide':
+        specifier: ^1.2.135
+        version: 1.2.135
+      '@iconify/icons-mdi':
+        specifier: ^1.2.48
+        version: 1.2.48
       '@iconify/react':
         specifier: ^6.0.2
         version: 6.0.2(react@19.2.4)
@@ -194,6 +200,12 @@ packages:
 
   '@iconify/icons-line-md@1.2.30':
     resolution: {integrity: sha512-gFZmHkWSkSGDZEauw7D1m4HEIGXFHRv9H3tiZYwXKD43j1QmtF4D/A2e4UYJ+rfcS1BZ1lmdzLQUzmH3vCIsPQ==}
+
+  '@iconify/icons-lucide@1.2.135':
+    resolution: {integrity: sha512-odjb/fGnKGIw3aNwZV8n4lTmpPN9LR2nHa3hjmZGrHNK3y1gHhiaU4H1XlCrSeQxkEN6TOB+l/falLwRo1rGRw==}
+
+  '@iconify/icons-mdi@1.2.48':
+    resolution: {integrity: sha512-1Tiq+iX1d2MzrdDiw45Tc9HuhNgg8H4vvaKNV+kF+jmr/kPG+YyeLMyXUKp4bwv+gheIAgNpZPjuqAPRkmMieA==}
 
   '@iconify/react@6.0.2':
     resolution: {integrity: sha512-SMmC2sactfpJD427WJEDN6PMyznTFMhByK9yLW0gOTtnjzzbsi/Ke/XqsumsavFPwNiXs8jSiYeZTmLCLwO+Fg==}
@@ -2155,6 +2167,14 @@ snapshots:
   '@humanwhocodes/retry@0.4.3': {}
 
   '@iconify/icons-line-md@1.2.30':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify/icons-lucide@1.2.135':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify/icons-mdi@1.2.48':
     dependencies:
       '@iconify/types': 2.0.0
 

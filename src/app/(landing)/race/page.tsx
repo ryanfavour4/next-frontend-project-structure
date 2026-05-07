@@ -6,13 +6,15 @@ import Pillars from "@/sections/pillars";
 import Mission from "@/sections/mission";
 import ComingSoon from "@/sections/coming-soon";
 import Footer from "@/sections/footer";
+import GetInvolved from "@/sections/get-involved";
 
 export default function App() {
     return (
-        <div className="bg-[#03091a] antialiased">
+        <div className="bg-primary antialiased">
             <Navbar />
             <Hero />
             <About />
+            <GetInvolved />
             <Pillars />
             <Mission />
             <ComingSoon />

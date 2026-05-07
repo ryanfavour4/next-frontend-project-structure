@@ -1,22 +1,24 @@
-import Icon from "@/components/ui/icon";
+// import Icon from "@/components/ui/icon";
 import { useInView, motion } from "motion/react";
 import { useRef } from "react";
+import Image from "next/image";
 
-const stats = [
-    { value: "20+", label: "Years of Impact", icon: "lucide:star" },
-    { value: "50K+", label: "Children Reached", icon: "lucide:heart" },
-    { value: "30+", label: "Countries", icon: "lucide:globe" },
-    { value: "100+", label: "Partner NGOs", icon: "lucide:trending-up" },
-];
+// const stats = [
+//     { value: "20+", label: "Years of Impact", icon: "lucide:star" },
+//     { value: "50K+", label: "Children Reached", icon: "lucide:heart" },
+//     { value: "30+", label: "Countries", icon: "lucide:globe" },
+//     { value: "100+", label: "Partner NGOs", icon: "lucide:trending-up" },
+// ];
 
 export default function About() {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-80px" });
+    const childrenImage = "/images/happy-about-kids.png";
 
     return (
         <section
             id="about"
-            className="py-24 bg-linear-to-b from-[#03091a] to-[#0a1e5e]"
+            className="py-24 bg-linear-to-br from-background-fade via-background to-background-fade"
         >
             <div className="max-w-6xl mx-auto px-5">
                 <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -27,20 +29,20 @@ export default function About() {
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.7 }}
                     >
-                        <span className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-3 block">
+                        <span className="text-primary/75 text-xs font-bold tracking-[0.3em] uppercase mb-3 block">
                             About The Conference
                         </span>
-                        <h2 className="text-white text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        <h2 className="text-text text-4xl md:text-5xl font-black mb-6 leading-tight">
                             A Global Sprint
                             <br />
-                            <span className="text-blue-400">
+                            <span className="text-primary">
                                 For Children&apos;s
                             </span>
                             <br />
-                            <span className="text-yellow-400">Futures</span>
+                            <span className="text-secondary">Futures</span>
                         </h2>
                         <div className="w-16 h-1 bg-linear-to-r from-blue-500 to-yellow-400 rounded-full mb-7" />
-                        <p className="text-white/70 text-base leading-relaxed mb-5">
+                        <p className="text-text/70 text-base leading-relaxed mb-5">
                             The RACE Conference is Inner City Mission for
                             Children&apos;s flagship gathering — bringing
                             together NGOs, ministry leaders, policymakers, and
@@ -48,7 +50,7 @@ export default function About() {
                             Accelerate, Collaborate, and Extend the reach of
                             transformational work in underserved communities.
                         </p>
-                        <p className="text-white/60 text-sm leading-relaxed mb-8">
+                        <p className="text-text/60 text-sm leading-relaxed mb-8 hidden">
                             Celebrating 20 years of relentless pursuit, this
                             conference is more than a gathering — it is a
                             declaration that every child deserves a future, and
@@ -58,7 +60,7 @@ export default function About() {
                             href="https://www.theinnercitymission.ngo"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group"
+                            className="inline-flex items-center gap-2 text-primary hover:text-primary/90 font-semibold text-sm transition-colors group"
                         >
                             <span>Learn more at theinnercitymission.ngo</span>
                             <span className="group-hover:translate-x-1 transition-transform">
@@ -68,7 +70,17 @@ export default function About() {
                     </motion.div>
 
                     {/* Right: stats grid */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="h-full">
+                        <Image
+                            src={childrenImage}
+                            alt="Children"
+                            className="w-full! h-full! block object-cover md:-skew-x-4 rounded-2xl md:rounded-tr-2xl md:rounded-bl-2xl"
+                            width={200}
+                            height={600}
+                        />
+                    </div>
+                    {/* Right: stats grid */}
+                    {/* <div className="grid grid-cols-2 gap-4">
                         {stats.map((s, i) => {
                             const icon = s.icon;
                             return (
@@ -97,7 +109,7 @@ export default function About() {
                                 </motion.div>
                             );
                         })}
-                    </div>
+                    </div>  */}
                 </div>
             </div>
         </section>

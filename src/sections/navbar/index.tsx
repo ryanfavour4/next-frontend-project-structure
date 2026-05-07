@@ -1,6 +1,8 @@
+"use client";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Icon from "@/components/ui/icon";
+import Logo from "@/components/logo";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -19,14 +21,13 @@ export default function Navbar() {
 
     return (
         <motion.header
-            className="fixed top-0 inset-x-0 z-50"
+            className={`fixed top-0 inset-x-0 z-50 ${scrolled ? "bg-primary/5" : "bg-primary/0"}`}
             style={{
-                backgroundColor: `rgba(10,25,60,${scrolled ? 0.97 : 0})`,
                 backdropFilter: scrolled ? "blur(12px)" : "none",
                 transition: "background-color 0.3s, backdrop-filter 0.3s",
             }}
         >
-            <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+            <div className="max-w-6xl mx-auto px-5 h-20 flex items-center justify-between">
                 <motion.a
                     href="#"
                     className="flex items-center gap-2"
@@ -34,14 +35,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14H8V8h2v8zm4 0h-2V8h2v8z" />
-                        </svg>
-                    </div>
-                    <span className="font-bold text-white text-sm tracking-wider uppercase">
-                        Inner City Mission
-                    </span>
+                    <Logo className="w-28" />
                 </motion.a>
 
                 <nav className="hidden md:flex items-center gap-8">
@@ -49,7 +43,7 @@ export default function Navbar() {
                         <motion.a
                             key={l}
                             href={`#${l.toLowerCase()}`}
-                            className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors"
+                            className="text-primary/80 hover:text-primary text-sm font-medium tracking-wide transition-colors"
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * i + 0.3 }}
@@ -90,7 +84,7 @@ export default function Navbar() {
                         <a
                             key={l}
                             href={`#${l.toLowerCase()}`}
-                            className="text-white/80 hover:text-white text-sm font-medium"
+                            className="text-primary/80 hover:text-primary text-sm font-medium"
                             onClick={() => setOpen(false)}
                         >
                             {l}
