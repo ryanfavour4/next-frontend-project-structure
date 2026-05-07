@@ -36,7 +36,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        console.log(body);
+
         const db = await connectDB();
 
         const userRepository = db.getRepository(User);
