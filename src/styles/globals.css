@@ -32,7 +32,7 @@
         @apply bg-primary hover:bg-primary/90 text-white font-bold px-8 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/35 flex items-center gap-2;
     }
     .btn-secondary {
-        @apply bg-secondary hover:bg-secondary/90 text-white font-bold px-8 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-105 hover:shadow-xl hover:shadow-secondary/35 flex items-center gap-2;
+        @apply bg-secondary hover:bg-secondary/90 text-text font-bold px-8 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-105 hover:shadow-xl hover:shadow-secondary/35 flex items-center gap-2;
     }
 
     .text-primary {

@@ -1,7 +1,8 @@
+import RegisterModal from "@/components/modal/register-modal";
 import Icon from "@/components/ui/icon";
 import { useInView, motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function PillarCard({
     pillar,
@@ -44,7 +45,7 @@ function PillarCard({
                 <div
                     className={`w-8 h-8 rounded-xl bg-linear-to-br ${pillar.color} flex items-center justify-center mb-5 shadow-lg ${pillar.glow}`}
                 >
-                    <Icon icon={icon} className="text-white size-5" />
+                    <Icon icon={icon} className="text-text size-5" />
                 </div>
 
                 {/* Label */}
@@ -57,7 +58,7 @@ function PillarCard({
                     >
                         {pillar.letter}
                     </span>
-                    <h3 className="text-white font-bold md:text-xl text-lg" >
+                    <h3 className="text-white font-bold md:text-xl text-lg">
                         {pillar.word}
                     </h3>
                 </div>
@@ -67,7 +68,10 @@ function PillarCard({
                 {pillar.desc}
             </p>
 
-            <button onClick={pillar.function} className="btn-secondary w-full mt-6">
+            <button
+                onClick={pillar.function}
+                className="btn-secondary w-full mt-6"
+            >
                 <span>{pillar.button}</span>
                 <Icon icon={"lucide:arrow-right"} />
             </button>
@@ -82,6 +86,7 @@ function PillarCard({
 
 export default function GetInvolved() {
     const router = useRouter();
+    const [open, setOpen] = useState(false);
 
     const pillars = [
         {
@@ -89,10 +94,20 @@ export default function GetInvolved() {
             word: "Register",
             color: "from-secondary/75 to-secondary",
             glow: "shadow-secondary/30",
-            icon: "mdi:register-outline",
+            icon: "lucide:user-plus-2",
             desc: "Sign up to participate and also get updated about the conference information. Join the RACE.",
             button: "Register",
-            function: () => router.push("/register"),
+            function: () => setOpen(true),
+        },
+        {
+            letter: "A",
+            word: "Watch Event Live",
+            color: "from-secondary/75 to-secondary",
+            glow: "shadow-secondary/30",
+            icon: "lucide:video",
+            desc: "Click the button below to participate live in the RACE Conference.",
+            button: "WATCH NOW",
+            function: () => router.push("/watch-live"),
         },
     ];
 
@@ -100,43 +115,47 @@ export default function GetInvolved() {
     const inView = useInView(titleRef, { once: true, margin: "-60px" });
 
     return (
-        <section
-            id="pillars"
-            className="py-24 bg-linear-to-b from-[#0a1e5e] to-[#061233]"
-        >
-            <div className="max-w-6xl mx-auto px-5">
-                <motion.div
-                    ref={titleRef}
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                >
-                    <span className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-3 block">
-                        Conference Framework
-                    </span>
-                    <h2
-                        className="text-white text-4xl md:text-5xl font-black mb-4"
-                        style={{
-                            fontFamily: "Impact, Arial Black, sans-serif",
-                        }}
+        <>
+            <section
+                id="pillars"
+                className="py-24 bg-linear-to-b from-[#0a1e5e] to-[#061233]"
+            >
+                <div className="max-w-6xl mx-auto px-5">
+                    <motion.div
+                        ref={titleRef}
+                        className="text-center mb-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6 }}
                     >
-                        Get Involved
-                    </h2>
-                    <div className="w-16 h-1 bg-linear-to-r from-blue-500 to-yellow-400 rounded-full mx-auto mb-5" />
-                    <p className="text-white/60 max-w-xl mx-auto text-base leading-relaxed">
-                        Every Process represents a core commitment. Together we
-                        form the blueprint for transforming our children&apos;s
-                        futures.
-                    </p>
-                </motion.div>
+                        <span className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-3 block">
+                            Conference Framework
+                        </span>
+                        <h2
+                            className="text-white text-4xl md:text-5xl font-black mb-4"
+                            style={{
+                                fontFamily: "Impact, Arial Black, sans-serif",
+                            }}
+                        >
+                            Get Involved
+                        </h2>
+                        <div className="w-16 h-1 bg-linear-to-r from-blue-500 to-yellow-400 rounded-full mx-auto mb-5" />
+                        <p className="text-white/60 max-w-xl mx-auto text-base leading-relaxed">
+                            Every Process represents a core commitment. Together
+                            we form the blueprint for transforming our
+                            children&apos;s futures.
+                        </p>
+                    </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    {pillars.map((p, i) => (
-                        <PillarCard key={p.word} pillar={p} index={i} />
-                    ))}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-3xl mx-auto">
+                        {pillars.map((p, i) => (
+                            <PillarCard key={p.word} pillar={p} index={i} />
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <RegisterModal open={open} onClose={() => setOpen(false)} />
+        </>
     );
 }

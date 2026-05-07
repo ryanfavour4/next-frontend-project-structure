@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll } from "motion/react";
 import Icon from "@/components/ui/icon";
 import Logo from "@/components/logo";
 
@@ -8,7 +8,6 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { scrollY } = useScroll();
-    const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
 
     useEffect(() => {
         const unsub = scrollY.on("change", (v) => setScrolled(v > 60));
@@ -16,8 +15,6 @@ export default function Navbar() {
     }, [scrollY]);
 
     const links = ["About", "Pillars", "Mission", "Register"];
-
-    console.log(bgOpacity);
 
     return (
         <motion.header

@@ -5,7 +5,7 @@ const milestones = [
     {
         year: "2005",
         label: "Founded",
-        desc: "Inner City Mission established with a bold vision for vulnerable children.",
+        desc: "The InnerCity Mission established with a bold vision for vulnerable children.",
     },
     {
         year: "2010",
@@ -52,7 +52,7 @@ export default function Mission() {
                     </h2>
                     <div className="w-16 h-1 bg-linear-to-r from-yellow-400 to-blue-500 rounded-full mx-auto mb-6" />
                     <p className="text-white/60 max-w-2xl mx-auto text-base leading-relaxed">
-                        For two decades, Inner City Mission for Children has
+                        For two decades, The InnerCity Mission for Children has
                         been relentlessly running toward a world where every
                         child knows dignity, opportunity, and love.
                     </p>
@@ -87,7 +87,7 @@ export default function Mission() {
                             to slow down.
                         </p>
                         <p className="text-blue-400 text-sm font-semibold mt-5 tracking-wide">
-                            — Inner City Mission for Children
+                            — The InnerCity Mission for Children
                         </p>
                     </div>
                 </motion.div>

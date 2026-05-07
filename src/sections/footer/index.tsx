@@ -19,7 +19,8 @@ export default function Footer() {
                             <span className="text-blue-400">Conference</span>
                         </span>
                         <span className="text-white/40 text-xs">
-                            Inner City Mission for Children — 20th Anniversary
+                            The InnerCity Mission for Children — 20th
+                            Anniversary
                         </span>
                     </div>
 
@@ -45,8 +46,8 @@ export default function Footer() {
 
                     {/* Copyright */}
                     <p className="text-white/25 text-xs">
-                        &copy; {new Date().getFullYear()} Inner City Mission for
-                        Children. All rights reserved.
+                        &copy; {new Date().getFullYear()} The InnerCity Mission
+                        for Children. All rights reserved.
                     </p>
                 </div>
             </div>

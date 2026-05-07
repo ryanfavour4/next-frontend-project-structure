@@ -43,7 +43,7 @@ export default function About() {
                         </h2>
                         <div className="w-16 h-1 bg-linear-to-r from-blue-500 to-yellow-400 rounded-full mb-7" />
                         <p className="text-text/70 text-base leading-relaxed mb-5">
-                            The RACE Conference is Inner City Mission for
+                            The RACE Conference is The InnerCity Mission for
                             Children&apos;s flagship gathering — bringing
                             together NGOs, ministry leaders, policymakers, and
                             change-makers on a shared sprint to Resource,
